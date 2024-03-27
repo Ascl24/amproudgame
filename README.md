@@ -1,4 +1,4 @@
-Uses raylib for rendering, physics, engine, everything.
+Uses Lua and Love2D because we are bad at developing.
 
 ## Goals: ##
 [] Create a moving sprite

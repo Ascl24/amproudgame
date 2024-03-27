@@ -1,20 +1,33 @@
-#include <raylib.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "src/glad.c"
+#include <GLFW/glfw3.h>
 
-const int SCREEN_WIDTH = 1024;
-const int SCREEN_HEIGHT = 768;
+void error_callback(int error, const char* description)
+{
+    fprintf(stderr, "Error: %s\n", description);
+}
+int main (void) {
+        glfwSetErrorCallback(error_callback);
+        glfwInit();
+        if (!glfwInit()) return -1;
 
-int main(void) {
-        InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Better than Sex");
-        
-        SetTargetFPS(60);
-
-        while (!WindowShouldClose()) {
-                BeginDrawing();
-                ClearBackground(RAYWHITE);
-                DrawText("It's a beautiful death.", 190, 200, 20, LIGHTGRAY);
-                EndDrawing();
+        GLFWwindow* window = glfwCreateWindow(640, 480, "My Title", NULL, NULL);
+        if (!window)
+        {
+                glfwTerminate();
+                exit(EXIT_FAILURE);
         }
+        glfwMakeContextCurrent(window);
+        gladLoadGL();
+        glfwSwapInterval(1);
 
-        CloseWindow();
+        while (!glfwWindowShouldClose(window))
+        {
+                glfwSwapBuffers(window);
+                glfwPollEvents();
+        }
+        glfwDestroyWindow(window);
+        glfwTerminate();
         return 0;
 }

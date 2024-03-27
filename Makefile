@@ -1,6 +1,4 @@
-CC = gcc
+cc := gcc
 
-all:
-	cc main.c -o game -lraylib
-clean: 
-	rm -f game
+game:
+	gcc main.c -lGL -lglfw -o game
